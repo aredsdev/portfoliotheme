@@ -392,6 +392,9 @@ p.card {
 
 .mobile-nav ul {
     text-align: center;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 50%;
 }
 
 .button:hover,
