@@ -1,0 +1,545 @@
+/*
+Theme Name: My Portfolio Theme
+Theme URI: https://yourwebsite.com
+Author: Allen Redshaw
+Author URI: https://yourwebsite.com
+Description: A modern block-based portfolio theme.
+Version: 1.0
+Requires at least: 6.0
+Tested up to: 6.7
+Requires PHP: 7.4
+Text Domain: my-portfolio-theme
+*/
+
+/* General Styles */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--body-font), sans-serif;
+    font-weight: var(--body-font-weight);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: var(--primary-color);
+    background-color: var(--site-bg-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font), sans-serif;
+    margin: 0 0 15px;
+}
+
+h1 {
+    font-size: var(--h1-size);
+    font-weight: var(--h1-weight);
+}
+
+
+h2 {
+    font-size: var(--h2-size);
+    font-weight: var(--h2-weight);
+}
+
+h3 {
+    font-size: var(--h3-size);
+    font-weight: var(--h3-weight);
+}
+
+h4 {
+    font-size: var(--h4-size);
+    font-weight: var(--h4-weight);
+}
+
+h5 {
+    font-size: var(--h5-size);
+    font-weight: var(--h5-weight);
+}
+
+h6 {
+    font-size: var(--h6-size);
+    font-weight: var(--h6-weight);
+}
+
+@media (max-width: 768px) {
+
+    
+}
+
+p {
+    margin: 0 0 15px;
+    font-size: var(--p-size_desktop);
+    font-weight: var(--p-weight);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+/* Header */
+.site-header {
+    background-color: var(--primary-color);
+    color: var(--site-bg-color);
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure the header is on top */
+    width: 100%; /* Ensure the header spans the full width */
+    transition: all 0.3s ease-in-out;
+}
+
+.original-header,
+.fixed-header {
+    position: relative; /* Initially position as relative */
+    width: 100%;
+}
+
+.fixed-header {
+    position: fixed; /* Fixed position for the second header */
+    top: -100px; /* Start off-screen */
+    display: none; /* Initially hidden */
+    animation: slideDown 0.3s forwards; /* Slide down animation */
+}
+
+@keyframes slideDown {
+    to {
+        top: 0; /* Slide down to the top */
+    }
+}
+
+.fixed-header.scrolled {
+    display: flex; /* Show the fixed header when scrolled */
+    background-color: rgba(0, 0, 0, 0.8); /* Slightly transparent */
+    padding: 10px 0;
+}
+
+.fixed-header.scrolled:hover {
+    background-color: var(--primary-color); /* Original color on hover */
+}
+
+.below-hero-sidebar {
+    background-color: var(--primary-color);
+    color: var(--site-bg-color);
+    padding: 25vh 10vw 25vh 10vw;
+    text-align: center;
+}
+
+.header-content {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    transition: all 0.3s ease-in-out;
+}
+
+.site-header .logo {
+    grid-column: 1 / span 2; /* Occupy the first two columns by default */
+    transition: all 0.3s ease-in-out;
+}
+
+.site-header.scrolled .logo {
+    grid-column: 1 / span 1; /* Occupy only the first column when scrolled */
+}
+
+.main-navigation {
+    grid-column: 5 / span 4; /* Center the menu items */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.site-header.scrolled .main-navigation {
+    grid-column: 2 / span 10; /* Occupy the remaining columns when scrolled */
+}
+
+#menu-main-menu-2 {
+    display: flex;
+    flex-flow: column;
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.nav-menu li {
+    margin-right: 20px;
+}
+
+.nav-menu li a {
+    color: var(--site-bg-color);
+    font-weight: bold;
+}
+
+.dark-background {
+    background-color: var(--primary-color, #333);
+    color: var(--site-bg-color);
+    padding: 10px;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /*padding-top: 20vh; /* Add padding to the top of the hero section */
+}
+
+.hero-content-sidebar {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Ensure the overlay is below the header */
+    background-color: rgba(255, 255, 255, 0.5) !important; /* Adjust this value to match your desired overlay color */
+}
+
+/* Global Parallax Styles */
+.parallax {
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.parallax-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.parallax-layer-back {
+    z-index: -3;
+}
+
+.parallax-layer-mid {
+    z-index: -2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parallax-layer-front {
+    z-index: -1;
+    padding-top: 50vh;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/* Top Parallax Styles */
+.parallax-top {
+    margin-top: -100px; /* Adjust this value to match the height of your header */
+}
+
+.parallax-top .parallax-layer {
+    top: 0; /* Ensure it starts at the top */
+}
+
+.parallax-top .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.parallax-layer-back::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5); /* 50% white overlay */
+    z-index: 1; /* Ensure the overlay is above the background image */
+}
+
+/* Bottom Parallax Styles */
+.parallax-bottom {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh; /* Ensure the parent div has a minimum height of 100vh */
+}
+
+.parallax-bottom .parallax-layer {
+    bottom: 0;
+    top: auto;
+}
+
+.parallax-bottom .parallax-layer-back {
+    top: -50vh; /* Adjust this value to start above the top of its parent div */
+}
+
+.bottom-parallax-mid {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.bottom-dark-area {
+    background-color: var(--primary-color);
+    color: var(--site-bg-color);
+    padding: 25vh 10vw;
+    text-align: center;
+    position: relative;
+    z-index: 3;
+}
+
+.container {
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+section {
+    margin-top: 20vh;
+}
+
+img.wp-block-cover__image-background {
+    border-radius: 0;
+}
+
+svg.icon {
+    display: block;
+    margin: 0 auto;
+}
+
+.wp-block-cover {
+    margin-bottom: 5vh;
+}
+
+figure.wp-block-image {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.wp-block-columns {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.wp-block-column {
+    flex: 1;
+    padding: 10px;
+}
+
+p.card {
+    background: white;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.dt-indent {
+    padding-left: 20px;
+}
+
+/* Button Styles */
+.button,
+.wp-block-button__link,
+.elementor-button,
+.bricks-button {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    font-family: var(--body-font), sans-serif;
+    border-radius: 50px; /* Makes the ends totally round */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Adds a drop shadow */
+    font-size: var(--button-size);
+    font-weight: var(--button-weight);
+}
+
+.mobile-nav {
+    display: none;
+}
+
+.mobile-nav ul {
+    text-align: center;
+}
+
+.button:hover,
+.wp-block-button__link:hover,
+.elementor-button:hover,
+.bricks-button:hover {
+    background-color: var(--primary-color);
+    color: var(--site-bg-color);
+    transform: translateY(-4px); /* Lifts the button up */
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3); /* More prominent shadow */
+}
+
+/* Add Active State for Smooth Transition on Click */
+.button:active,
+.wp-block-button__link:active,
+.elementor-button:active,
+.bricks-button:active {
+    transform: translateY(-2px); /* Slightly reduces the lift on click */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); /* Reduces shadow */
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: var(--site-bg-color);
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 50%;
+    transform: translate(50%);
+    background-color: var(--primary-color);
+    color: var(--site-bg-color);
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    z-index: 1001;
+}
+
+.hamburger-menu .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--site-bg-color);
+    transition: all 0.3s ease-in-out;
+}
+
+
+@media (max-width: 768px) {
+
+    h1 {
+        font-size: var(--h1-size_mobile);
+        font-weight: var(--h1-weight_mobile);
+    }
+    h2 {
+        font-size: var(--h2-size_mobile);
+        font-weight: var(--h2-weight_mobile);
+    }
+
+    h3 {
+        font-size: var(--h3-size_mobile);
+        font-weight: var(--h3-weight_mobile);
+    }
+
+    h4 {
+        font-size: var(--h4-size_mobile);
+        font-weight: var(--h4-weight_mobile);
+    }
+    
+    h5 {
+        font-size: var(--h5-size_mobile);
+        font-weight: var(--h5-weight_mobile);
+    }
+
+    h6 {
+        font-size: var(--h6-size_mobile);
+        font-weight: var(--h6-weight_mobile);
+    }
+
+    p {
+        font-size: var(--p-size_mobile);
+        font-weight: var(--p-weight_mobile);
+    }
+
+    .button,
+    .wp-block-button__link,
+    .elementor-button,
+    .bricks-button {
+        font-size: var(--button-size_mobile);
+        font-weight: var(--button-weight_mobile);
+    }
+
+    .wp-block-column {
+        flex-basis: 100%;
+    }
+
+    .main-navigation {
+        display: none; /* Hide the main navigation on mobile */
+    }
+
+    .hamburger-menu {
+        display: block; /* Show the hamburger menu on mobile */
+    }
+
+    .mobile-nav {
+        display: none;
+        position: fixed;
+        top: 50%;
+        right: 10vw;
+        left: 10vw;
+        height: 60%;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        flex-direction: column;
+        padding: 20px;
+        transform: translateY(-50%);
+    }
+
+    .mobile-nav.active {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mobile-nav a {
+        color: var(--site-bg-color);
+        font-size: 18px;
+        margin: 10px 0;
+        width: 100%;
+        text-align: right;
+    }
+
+    .dt-indent {
+        padding-left: 0px;
+    }
+
+    .site-header .logo {
+        grid-column: 5 / span 4; /* Occupy the first two columns by default */
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .fixed-header.scrolled {
+        display: none;
+    }
+}

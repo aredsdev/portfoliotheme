@@ -1,0 +1,18 @@
+{
+    "version": 2,
+    "settings": {
+        "color": {
+            "palette": [
+                { "name": "Primary", "slug": "primary", "color": "#0073aa" },
+                { "name": "Accent", "slug": "accent", "color": "#ff6600" }
+            ]
+        },
+        "typography": {
+            "fontSizes": [
+                { "name": "Small", "slug": "small", "size": "14px" },
+                { "name": "Medium", "slug": "medium", "size": "18px" },
+                { "name": "Large", "slug": "large", "size": "24px" }
+            ]
+        }
+    }
+}
