@@ -22,6 +22,8 @@
                 <?php endif; ?>
             </a>
         </div>
+        
+        <!-- desktop nav -->
         <nav class="main-navigation">
             <?php
             wp_nav_menu(array(

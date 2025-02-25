@@ -34,33 +34,32 @@
         endwhile;
     endif;
     ?>
-</div>
 
-<!-- New Parallax Section -->
-<div class="bottom-dark-area">  
-    <?php if (is_active_sidebar('bottom-dark-area')) : ?>
-        <?php dynamic_sidebar('bottom-dark-area'); ?>
-    <?php else: ?>
-        <p>Placeholder content for bottom dark area.</p>
-    <?php endif; ?>
-</div> 
-<div class="parallax parallax-bottom">
-    <div class="bottom-parallax-mid">
-        <?php if (is_active_sidebar('bottom-parallax-mid-area')) : ?>
-            <div class="bottom-parallax-mid-widget-area">
-                <?php dynamic_sidebar('bottom-parallax-mid-area'); ?>
-            </div>
+    <!-- New Parallax Section -->
+    <div class="bottom-dark-area">  
+        <?php if (is_active_sidebar('bottom-dark-area')) : ?>
+            <?php dynamic_sidebar('bottom-dark-area'); ?>
         <?php else: ?>
-            <p>Placeholder content for bottom parallax mid area.</p>
+            <p>Placeholder content for bottom dark area.</p>
         <?php endif; ?>
+    </div> 
+    <div class="parallax parallax-bottom">
+        <div class="bottom-parallax-mid">
+            <?php if (is_active_sidebar('bottom-parallax-mid-area')) : ?>
+                <div class="bottom-parallax-mid-widget-area">
+                    <?php dynamic_sidebar('bottom-parallax-mid-area'); ?>
+                </div>
+            <?php else: ?>
+                <p>Placeholder content for bottom parallax mid area.</p>
+            <?php endif; ?>
+        </div>
+        <div class="parallax-layer parallax-layer-back" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/images/blue_mountains.webp');">
+            <!-- Background layer with mountains -->
+        </div>
+        <div class="parallax-layer parallax-layer-mid">
+            <!-- Mid layer content if any -->
+        </div>
     </div>
-    <div class="parallax-layer parallax-layer-back" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/images/blue_mountains.webp');">
-        <!-- Background layer with mountains -->
-    </div>
-    <div class="parallax-layer parallax-layer-mid">
-        <!-- Mid layer content if any -->
-    </div>
-</div>
 </main>
 
 <?php get_footer(); ?>
