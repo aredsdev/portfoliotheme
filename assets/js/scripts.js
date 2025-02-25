@@ -1,12 +1,13 @@
 jQuery(document).ready(function($) {
-    var $fixedHeader = $('.fixed-header');
+    var $siteHeader = $('.site-header');
     var viewportHeight = $(window).height();
 
+    // Scroll event to toggle 'scrolled' class
     $(window).on('scroll', function() {
         if ($(this).scrollTop() > viewportHeight) {
-            $fixedHeader.addClass('scrolled');
+            $siteHeader.addClass('scrolled');
         } else {
-            $fixedHeader.removeClass('scrolled');
+            $siteHeader.removeClass('scrolled');
         }
     });
 

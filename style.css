@@ -91,22 +91,24 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000; /* Ensure the header is on top */
-    width: 100%; /* Ensure the header spans the full width */
-    transition: all 0.3s ease-in-out;
-}
-
-.original-header,
-.fixed-header {
-    position: relative; /* Initially position as relative */
+    z-index: 1000;
     width: 100%;
+    position: absolute; /* Start as absolute */
+    top: 0;
+    transition: all 0.3s ease-in-out;
+    height: 10vh;
 }
 
-.fixed-header {
-    position: fixed; /* Fixed position for the second header */
-    top: -100px; /* Start off-screen */
-    display: none; /* Initially hidden */
-    animation: slideDown 0.3s forwards; /* Slide down animation */
+.site-header.scrolled {
+    position: fixed; /* Stick to the top */
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent */
+    padding: 10px 0; /* Shrink padding */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add shadow */
+    height: auto;
+}
+
+.site-header.scrolled:hover {
+    background-color: var(--primary-color); /* Full color on hover */
 }
 
 @keyframes slideDown {
@@ -192,12 +194,10 @@ a:hover {
 /* Hero Section */
 .hero {
     position: relative;
-    height: 50vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    /*padding-top: 20vh; /* Add padding to the top of the hero section */
 }
 
 .hero-content-sidebar {
@@ -252,7 +252,7 @@ a:hover {
 
 /* Top Parallax Styles */
 .parallax-top {
-    margin-top: -100px; /* Adjust this value to match the height of your header */
+    margin-top: 8vh;
 }
 
 .parallax-top .parallax-layer {
